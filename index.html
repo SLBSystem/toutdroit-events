@@ -8,95 +8,135 @@
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: #f7f9fc;
-      color: #1b1b1b;
+      background: #fafbfc;
+      color: #1a1a1a;
       display: flex;
       flex-direction: column;
-      align-items: center;
       min-height: 100vh;
     }
 
     header {
-      padding: 2rem 1rem 1rem;
+      background: #ffffff;
+      border-bottom: 1px solid #e0e0e0;
       text-align: center;
+      padding: 1.5rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     header img {
-      width: 160px;
+      width: 140px;
       height: auto;
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 1.8rem;
+      color: #005ea2;
       margin-top: 0.5rem;
-      color: #0074c7;
       font-weight: 700;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1rem 3rem;
     }
 
     .event-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5rem;
-      max-width: 1000px;
-      padding: 1.5rem;
-      width: 100%;
+      margin-top: 2rem;
     }
 
     .event-card {
       background: #fff;
       border-radius: 0.8rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      padding: 1.5rem;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      padding: 1.8rem;
       text-align: left;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
+      border: 1px solid #e6e9ec;
       cursor: pointer;
     }
 
     .event-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      border-color: #b6d9ff;
     }
 
     .event-card h3 {
-      color: #0074c7;
+      color: #005ea2;
       margin: 0 0 0.5rem;
+      font-size: 1.2rem;
     }
 
     .event-card p {
       margin: 0.3rem 0;
       color: #4b5563;
+      line-height: 1.4;
     }
 
     .event-detail {
-      background: white;
-      border-radius: 0.8rem;
-      padding: 2rem;
-      margin: 1.5rem auto;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      max-width: 700px;
-      width: 90%;
+      background: #fff;
+      border-radius: 1rem;
+      padding: 2rem 2.5rem;
+      margin-top: 2rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      border: 1px solid #e5e7eb;
+    }
+
+    .event-detail h2 {
+      color: #005ea2;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .meta {
+      color: #374151;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
     }
 
     iframe {
       width: 100%;
-      height: 600px;
+      height: 650px;
       border: none;
       border-radius: 0.8rem;
-      margin-top: 1.2rem;
+      margin-top: 1rem;
     }
 
     .error {
-      color: #e63946;
+      color: #d93025;
       text-align: center;
       font-weight: 500;
+      margin-top: 3rem;
     }
 
     footer {
-      margin-top: auto;
-      padding: 2rem 1rem;
+      background: #f1f3f5;
+      padding: 1.5rem 1rem;
       text-align: center;
-      color: #6b7280;
+      color: #555;
       font-size: 0.9rem;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    @media (max-width: 700px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      .event-detail {
+        padding: 1.5rem;
+      }
+      iframe {
+        height: 500px;
+      }
     }
   </style>
 </head>
@@ -122,17 +162,22 @@
         const data = await res.json();
 
         if (!eventID) {
-          // Page liste des événements
-          content.innerHTML = `<div class='event-list'>${Object.entries(data)
-            .map(([id, e]) => `
-              <div class='event-card' onclick="window.location='?eventID=${id}'">
-                <h3>${e.title}</h3>
-                <p><strong>Date :</strong> ${e.date || '—'}</p>
-                <p><strong>Lieu :</strong> ${e.location || '—'}</p>
-                <p><strong>Type :</strong> ${e.type || '—'}</p>
+          content.innerHTML = `
+            <section style='text-align:center;'>
+              <h2 style='color:#005ea2;'>Nos prochains événements</h2>
+              <p style='color:#4b5563;max-width:600px;margin:0.5rem auto 2rem;'>Découvrez les rencontres, ateliers et tables rondes à venir organisés par l'équipe TOUT DROIT.</p>
+              <div class='event-list'>
+                ${Object.entries(data)
+                  .map(([id, e]) => `
+                    <div class='event-card' onclick="window.location='?eventID=${id}'">
+                      <h3>${e.title}</h3>
+                      <p><strong>Date :</strong> ${e.date || '—'}</p>
+                      <p><strong>Lieu :</strong> ${e.location || '—'}</p>
+                      <p><strong>Type :</strong> ${e.type || '—'}</p>
+                    </div>`)
+                  .join('')}
               </div>
-            `)
-            .join('')}</div>`;
+            </section>`;
           return;
         }
 
@@ -144,14 +189,17 @@
 
         document.title = e.title + ' — TOUT DROIT';
         content.innerHTML = `
-          <div class='event-detail'>
-            <h2 style="color:#0074c7;">${e.title}</h2>
-            <p><strong>Date :</strong> ${e.date || '—'}</p>
-            <p><strong>Lieu :</strong> ${e.location || '—'}</p>
-            <p><strong>Type :</strong> ${e.type || '—'}</p>
+          <section class='event-detail'>
+            <h2>${e.title}</h2>
+            <div class='meta'>
+              <p><strong>Date :</strong> ${e.date || '—'}</p>
+              <p><strong>Lieu :</strong> ${e.location || '—'}</p>
+              <p><strong>Type :</strong> ${e.type || '—'}</p>
+            </div>
+            <p>${e.description || ''}</p>
             ${e.tally ? `<iframe src='${e.tally}' title='Formulaire d'inscription'></iframe>` : ''}
-          </div>
-        `;
+          </section>`;
+      
       } catch (err) {
         console.error(err);
         content.innerHTML = `<p class='error'>Erreur lors du chargement des événements.</p>`;
