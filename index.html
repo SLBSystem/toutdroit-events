@@ -1,20 +1,130 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Événements TOUT DROIT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOUT DROIT – Événement</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      border-bottom: 2px solid #eaeaea;
+    }
+
+    header img {
+      width: 120px;
+      margin-bottom: 0.5rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #0284c7; /* bleu-vert TOUT DROIT */
+    }
+
+    .meta {
+      margin: 1rem 0;
+      font-weight: 500;
+      color: #555;
+    }
+
+    p.description {
+      margin: 1.5rem 0;
+      font-size: 1rem;
+    }
+
+    iframe {
+      width: 100%;
+      height: 700px;
+      border: none;
+      border-radius: 12px;
+      margin-top: 2rem;
+    }
+
+    .error {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #888;
+      font-size: 1.2rem;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Événements TOUT DROIT</h1>
-  <div id="event"></div>
+  <header>
+    <img src="https://raw.githubusercontent.com/<ton-utilisateur>/<ton-repo>/main/public/logo-toutdroit.png" alt="Logo TOUT DROIT" />
+    <h2>Événements TOUT DROIT</h2>
+  </header>
+
+  <div class="container">
+    <div id="event-card" class="card">
+      <p class="error">Chargement de l’événement...</p>
+    </div>
+  </div>
 
   <script>
-    // Test basique : charge le JSON et affiche dans la console
-    fetch('/data/events.json')
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.error('Erreur JSON', err));
+    async function loadEvent() {
+      const params = new URLSearchParams(window.location.search);
+      const eventID = params.get("eventID");
+
+      if (!eventID) {
+        document.getElementById("event-card").innerHTML =
+          "<p class='error'>Aucun identifiant d'événement fourni.</p>";
+        return;
+      }
+
+      try {
+        const res = await fetch("/data/events.json");
+        const data = await res.json();
+        const e = data[eventID];
+
+        if (!e) {
+          document.getElementById("event-card").innerHTML =
+            "<p class='error'>Événement introuvable 😅</p>";
+          return;
+        }
+
+        document.title = e.title + " – TOUT DROIT";
+        document.getElementById("event-card").innerHTML = `
+          <h1>${e.title}</h1>
+          <div class="meta">
+            <p><strong>Date :</strong> ${e.date}</p>
+            <p><strong>Lieu :</strong> ${e.location}</p>
+            <p><strong>Type :</strong> ${e.type || ""}</p>
+          </div>
+          <p class="description">${e.description || ""}</p>
+          <iframe src="${e.tally}" title="Formulaire d'inscription"></iframe>
+        `;
+      } catch (err) {
+        document.getElementById("event-card").innerHTML =
+          "<p class='error'>Erreur lors du chargement des données.</p>";
+        console.error(err);
+      }
+    }
+
+    loadEvent();
   </script>
 </body>
 </html>
