@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Événements TOUT DROIT</title>
+</head>
+<body>
+  <h1>Événements TOUT DROIT</h1>
+  <div id="event"></div>
+
+  <script>
+    // Test basique : charge le JSON et affiche dans la console
+    fetch('/data/events.json')
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.error('Erreur JSON', err));
+  </script>
+</body>
+</html>
