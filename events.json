@@ -3,8 +3,7 @@
   "title": "💸 Prends le contrôle de tes finances !",
   "date": "2025-10-25T14:00:00.000+02:00",
   "location": "ESE BY GOW 82 Rue des Chargeurs Réunis, 76600 Le Havre",
-  "type": "type",
-  "places": "ok",
+  "Detils": "type",
   "link": "https://tinyurl.com/education-financiere",
   "tally": "https://tally.so/r/3lKlKW?event=2882270b4218801ea76ec9edff16fb89&date=25%20October%202025&heure=12:00&lieu=ESE%20BY%20GOW%2082%20Rue%20des%20Chargeurs%20Réunis,%2076600%20Le%20Havre&detail="
 }
@@ -14,10 +13,9 @@
   "title": "Le P’tit Déj des Charbonneurs",
   "date": "2025-11-08T11:00:00.000+01:00",
   "location": "L’evasion, 16 Bd Amiral Mouchez, 76600 Le Havre",
-  "type": "type",
-  "places": "ok",
+  "Detils": "🥐 type",
   "link": "",
-  "tally": "https://tally.so/r/3lKlKW?event=28d2270b421880529cf7df0e4729bb8c&date=08%20November%202025&heure=10:00&lieu=L’evasion,%2016%20Bd%20Amiral%20Mouchez,%2076600%20Le%20Havre&detail="
+  "tally": "https://tally.so/r/3lKlKW?event=28d2270b421880529cf7df0e4729bb8c&date=08%20November%202025&heure=10:00&lieu=L’evasion,%2016%20Bd%20Amiral%20Mouchez,%2076600%20Le%20Havre&detail=🥐%20Le%20P’tit%20Déj%20des%20Charbonneurs,%20c’est%20un%20moment%20d’échange%20entre%20entrepreneurs,%20porteurs%20de%20projets%20et%20esprits%20motivés%20du%20quartier.%0AAutour%20d’un%20café,%20on%20partage%20nos%20idées,%20nos%20galères,%20nos%20réussites%20et%20surtout%20notre%20envie%20d’avancer%20TOUT%20DROIT."
 }
 
 ,
@@ -25,8 +23,7 @@
   "title": "teste",
   "date": "2025-10-23",
   "location": "",
-  "type": "type",
-  "places": "ok",
+  "Detils": "type",
   "link": "",
   "tally": "https://tally.so/r/3lKlKW?event=28d2270b421880d18ae7d69cbe8ab591&date=23%20October%202025&heure=00:00&lieu=&detail="
 }
