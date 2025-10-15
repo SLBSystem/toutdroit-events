@@ -8,49 +8,75 @@
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: #f5f7fa;
+      background: #f7f9fc;
       color: #1b1b1b;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      text-align: center;
     }
+
     header {
       padding: 2rem 1rem 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      text-align: center;
     }
+
     header img {
       width: 160px;
       height: auto;
     }
+
     h1 {
-      font-size: 1.8rem;
-      margin: 0.5rem 0 1rem;
-      color: #0563c1;
+      font-size: 2rem;
+      margin-top: 0.5rem;
+      color: #0074c7;
+      font-weight: 700;
     }
-    .card {
+
+    .event-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      padding: 1.5rem;
+      width: 100%;
+    }
+
+    .event-card {
+      background: #fff;
+      border-radius: 0.8rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 1.5rem;
+      text-align: left;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .event-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-card h3 {
+      color: #0074c7;
+      margin: 0 0 0.5rem;
+    }
+
+    .event-card p {
+      margin: 0.3rem 0;
+      color: #4b5563;
+    }
+
+    .event-detail {
       background: white;
-      border: 1px solid #e0e6ed;
       border-radius: 0.8rem;
       padding: 2rem;
+      margin: 1.5rem auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       max-width: 700px;
       width: 90%;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    }
-    .meta {
-      font-size: 1rem;
-      color: #4b5563;
-      margin: 1rem 0;
-      line-height: 1.6;
-    }
+
     iframe {
       width: 100%;
       height: 600px;
@@ -58,27 +84,19 @@
       border-radius: 0.8rem;
       margin-top: 1.2rem;
     }
+
     .error {
       color: #e63946;
-      font-size: 1.1rem;
+      text-align: center;
       font-weight: 500;
     }
+
     footer {
       margin-top: auto;
-      padding: 1.5rem;
-      font-size: 0.85rem;
+      padding: 2rem 1rem;
+      text-align: center;
       color: #6b7280;
-    }
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.4rem;
-      }
-      .card {
-        padding: 1.5rem;
-      }
-      iframe {
-        height: 500px;
-      }
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -89,53 +107,58 @@
     <h1>Événements TOUT DROIT</h1>
   </header>
 
-  <div id="event-container" class="card">
-    <p class="error">Chargement de l'événement...</p>
-  </div>
+  <main id="content"></main>
 
   <footer>© 2025 TOUT DROIT — Ensemble, on avance dans la même direction.</footer>
 
   <script>
-    async function loadEvent() {
+    async function loadPage() {
       const params = new URLSearchParams(window.location.search);
       const eventID = params.get("eventID");
+      const content = document.getElementById("content");
 
       try {
         const res = await fetch("/events.json");
         const data = await res.json();
 
         if (!eventID) {
-          document.getElementById("event-container").innerHTML =
-            "<p class='error'>Aucun identifiant d'événement fourni.</p>";
+          // Page liste des événements
+          content.innerHTML = `<div class='event-list'>${Object.entries(data)
+            .map(([id, e]) => `
+              <div class='event-card' onclick="window.location='?eventID=${id}'">
+                <h3>${e.title}</h3>
+                <p><strong>Date :</strong> ${e.date || '—'}</p>
+                <p><strong>Lieu :</strong> ${e.location || '—'}</p>
+                <p><strong>Type :</strong> ${e.type || '—'}</p>
+              </div>
+            `)
+            .join('')}</div>`;
           return;
         }
 
         const e = data[eventID];
         if (!e) {
-          document.getElementById("event-container").innerHTML =
-            "<p class='error'>Événement introuvable 🚫</p>";
+          content.innerHTML = `<p class='error'>Événement introuvable 🚫</p>`;
           return;
         }
 
-        document.title = e.title + " — TOUT DROIT";
-        document.getElementById("event-container").innerHTML = `
-          <h2 style="color:#0563c1;">${e.title}</h2>
-          <div class="meta">
-            <p><strong>Date :</strong> ${e.date || "—"}</p>
-            <p><strong>Lieu :</strong> ${e.location || "—"}</p>
-            <p><strong>Type :</strong> ${e.type || "—"}</p>
+        document.title = e.title + ' — TOUT DROIT';
+        content.innerHTML = `
+          <div class='event-detail'>
+            <h2 style="color:#0074c7;">${e.title}</h2>
+            <p><strong>Date :</strong> ${e.date || '—'}</p>
+            <p><strong>Lieu :</strong> ${e.location || '—'}</p>
+            <p><strong>Type :</strong> ${e.type || '—'}</p>
+            ${e.tally ? `<iframe src='${e.tally}' title='Formulaire d'inscription'></iframe>` : ''}
           </div>
-          <p>${e.description || ""}</p>
-          ${e.tally ? `<iframe src="${e.tally}" title="Formulaire d'inscription"></iframe>` : ""}
         `;
       } catch (err) {
         console.error(err);
-        document.getElementById("event-container").innerHTML =
-          "<p class='error'>Erreur lors du chargement de l'événement.</p>";
+        content.innerHTML = `<p class='error'>Erreur lors du chargement des événements.</p>`;
       }
     }
 
-    loadEvent();
+    loadPage();
   </script>
 </body>
 </html>
