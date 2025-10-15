@@ -3,127 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Événement | Tout Droit</title>
+  <title>Événements TOUT DROIT</title>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #0c0f1a;
-      color: #e5e7eb;
       margin: 0;
-      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #002c6c, #009da3);
+      color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       min-height: 100vh;
+      text-align: center;
     }
-
     header {
-      width: 100%;
-      text-align: center;
-      padding: 1rem 0;
+      padding: 2rem 1rem 1rem;
     }
-
     header img {
-      max-width: 220px;
+      width: 140px;
       height: auto;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
     }
-
+    h1 {
+      font-size: 2rem;
+      margin: 0.8rem 0;
+    }
     .card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
       padding: 2rem;
-      max-width: 420px;
+      max-width: 700px;
       width: 90%;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      transition: transform 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      backdrop-filter: blur(8px);
     }
-
-    .card:hover {
-      transform: translateY(-5px);
+    .meta {
+      font-size: 1rem;
+      color: #d0f0f2;
+      margin: 1rem 0;
     }
-
-    .card h1 {
-      font-size: 1.8rem;
-      color: #00c3ff;
-      margin-bottom: 0.5rem;
+    iframe {
+      width: 100%;
+      height: 700px;
+      border: none;
+      border-radius: 1rem;
+      margin-top: 1.5rem;
     }
-
-    .card p {
-      margin: 0.5rem 0;
-      line-height: 1.5;
+    .error {
+      color: #ffcaca;
+      font-size: 1.2rem;
     }
-
-    .btn {
-      display: inline-block;
-      margin-top: 1rem;
-      background: linear-gradient(90deg, #007cf0, #00dfd8);
-      color: #fff;
-      text-decoration: none;
-      padding: 0.7rem 1.4rem;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .btn:hover {
-      opacity: 0.9;
-    }
-
-    .not-found {
-      text-align: center;
-      font-size: 1.1rem;
-      opacity: 0.7;
-    }
-
     footer {
-      margin-top: 2rem;
-      font-size: 0.8rem;
-      opacity: 0.5;
+      margin-top: auto;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #b9e4e6;
     }
   </style>
 </head>
+
 <body>
   <header>
-    <img src="https://raw.githubusercontent.com/SLBSystem/toutdroit-events/main/assets/toutdroit-logo.png" alt="Tout Droit Logo">
+    <img src="https://raw.githubusercontent.com/SLBSystem/toutdroit-events/main/logo-toutdroit.png" alt="Logo Tout Droit">
+    <h1>Événements TOUT DROIT</h1>
   </header>
 
-  <div class="card" id="event-card">
-    <p>Chargement de l'événement...</p>
+  <div id="event-container" class="card">
+    <p class="error">Chargement de l'événement...</p>
   </div>
 
-  <footer>
-    © 2025 Tout Droit – Tous droits réservés
-  </footer>
+  <footer>© 2025 TOUT DROIT — Tous droits réservés</footer>
 
   <script>
     async function loadEvent() {
       const params = new URLSearchParams(window.location.search);
-      const eventId = params.get('event');
-      const card = document.getElementById('event-card');
+      const eventID = params.get("eventID");
 
       try {
-        const response = await fetch('https://raw.githubusercontent.com/SLBSystem/toutdroit-events/main/events.json');
-        const events = await response.json();
+        const res = await fetch("/events.json");
+        const data = await res.json();
 
-        if (!eventId || !events[eventId]) {
-          card.innerHTML = `<p class='not-found'>Événement introuvable 🕵️‍♂️</p>`;
+        if (!eventID) {
+          document.getElementById("event-container").innerHTML =
+            "<p class='error'>Aucun identifiant d'événement fourni.</p>";
           return;
         }
 
-        const ev = events[eventId];
-        card.innerHTML = `
-          <h1>${ev.title}</h1>
-          <p><strong>Date :</strong> ${new Date(ev.date).toLocaleString('fr-FR')}</p>
-          <p><strong>Lieu :</strong> ${ev.location}</p>
-          <p><strong>Places :</strong> ${ev.places}</p>
-          <a class='btn' href='${ev.tally}' target='_blank'>S'inscrire</a>
+        const e = data[eventID];
+        if (!e) {
+          document.getElementById("event-container").innerHTML =
+            "<p class='error'>Événement introuvable 😅</p>";
+          return;
+        }
+
+        document.title = e.title + " — TOUT DROIT";
+        document.getElementById("event-container").innerHTML = `
+          <h2>${e.title}</h2>
+          <div class="meta">
+            <p><strong>Date :</strong> ${e.date || "—"}</p>
+            <p><strong>Lieu :</strong> ${e.location || "—"}</p>
+            <p><strong>Type :</strong> ${e.type || "—"}</p>
+          </div>
+          <p>${e.description || ""}</p>
+          ${e.tally ? `<iframe src="${e.tally}" title="Formulaire d'inscription"></iframe>` : ""}
         `;
       } catch (err) {
-        card.innerHTML = `<p class='not-found'>Erreur de chargement ⚠️</p>`;
+        console.error(err);
+        document.getElementById("event-container").innerHTML =
+          "<p class='error'>Erreur lors du chargement de l'événement.</p>";
       }
     }
 
