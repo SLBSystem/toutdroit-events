@@ -5,102 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Événements TOUT DROIT</title>
   <style>
-    body {
+    :root {
+      --blue: #0074c7;
+      --green: #00b6a3;
+      --gray: #f5f7fa;
+      --text: #1c1c1c;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: 'Inter', sans-serif;
-      background: #fafbfc;
-      color: #1a1a1a;
+      background: var(--gray);
+      color: var(--text);
       display: flex;
       flex-direction: column;
+      align-items: center;
       min-height: 100vh;
     }
 
     header {
-      background: #ffffff;
-      border-bottom: 1px solid #e0e0e0;
       text-align: center;
-      padding: 1.5rem 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      padding: 2rem 1rem 1rem;
     }
 
     header img {
-      width: 140px;
+      width: 150px;
       height: auto;
+      margin-bottom: 0.5rem;
     }
 
     h1 {
       font-size: 1.8rem;
-      color: #005ea2;
-      margin-top: 0.5rem;
-      font-weight: 700;
-    }
-
-    main {
-      flex: 1;
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 1rem 3rem;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      margin-bottom: 1rem;
     }
 
     .event-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
-      margin-top: 2rem;
+      max-width: 1100px;
+      width: 100%;
+      padding: 1.5rem;
     }
 
     .event-card {
       background: #fff;
-      border-radius: 0.8rem;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-      padding: 1.8rem;
-      text-align: left;
-      transition: all 0.25s ease;
-      border: 1px solid #e6e9ec;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      transition: 0.2s ease;
       cursor: pointer;
+      border-top: 4px solid var(--blue);
     }
 
     .event-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      border-color: #b6d9ff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     }
 
     .event-card h3 {
-      color: #005ea2;
-      margin: 0 0 0.5rem;
+      color: var(--blue);
+      margin-bottom: 0.4rem;
       font-size: 1.2rem;
     }
 
     .event-card p {
-      margin: 0.3rem 0;
+      font-size: 0.95rem;
       color: #4b5563;
-      line-height: 1.4;
+      margin-bottom: 0.2rem;
     }
 
     .event-detail {
       background: #fff;
       border-radius: 1rem;
-      padding: 2rem 2.5rem;
-      margin-top: 2rem;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-      border: 1px solid #e5e7eb;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      max-width: 800px;
+      width: 90%;
+      margin: 2rem auto;
+      padding: 2rem;
+      animation: fadeIn 0.3s ease;
     }
 
     .event-detail h2 {
-      color: #005ea2;
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
+      font-size: 1.6rem;
+      color: var(--blue);
+      margin-bottom: 0.8rem;
     }
 
-    .meta {
-      color: #374151;
-      font-size: 1rem;
-      line-height: 1.6;
+    .event-detail .meta {
       margin-bottom: 1.5rem;
+      color: #555;
     }
 
     iframe {
@@ -108,35 +111,27 @@
       height: 650px;
       border: none;
       border-radius: 0.8rem;
-      margin-top: 1rem;
+      margin-top: 1.2rem;
     }
 
     .error {
-      color: #d93025;
+      color: #e63946;
       text-align: center;
       font-weight: 500;
-      margin-top: 3rem;
+      margin: 2rem;
     }
 
     footer {
-      background: #f1f3f5;
-      padding: 1.5rem 1rem;
+      margin-top: auto;
+      padding: 2rem 1rem;
       text-align: center;
-      color: #555;
+      color: #6b7280;
       font-size: 0.9rem;
-      border-top: 1px solid #e0e0e0;
     }
 
-    @media (max-width: 700px) {
-      h1 {
-        font-size: 1.5rem;
-      }
-      .event-detail {
-        padding: 1.5rem;
-      }
-      iframe {
-        height: 500px;
-      }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
@@ -163,20 +158,15 @@
 
         if (!eventID) {
           content.innerHTML = `
-            <section style='text-align:center;'>
-              <h2 style='color:#005ea2;'>Nos prochains événements</h2>
-              <p style='color:#4b5563;max-width:600px;margin:0.5rem auto 2rem;'>Découvrez les rencontres, ateliers et tables rondes à venir organisés par l'équipe TOUT DROIT.</p>
-              <div class='event-list'>
-                ${Object.entries(data)
-                  .map(([id, e]) => `
-                    <div class='event-card' onclick="window.location='?eventID=${id}'">
-                      <h3>${e.title}</h3>
-                      <p><strong>Date :</strong> ${e.date || '—'}</p>
-                      <p><strong>Lieu :</strong> ${e.location || '—'}</p>
-                      <p><strong>Details :</strong> ${e.details || '—'}</p>
-                    </div>`)
-                  .join('')}
-              </div>
+            <section class='event-list'>
+              ${Object.entries(data).map(([id, e]) => `
+                <div class='event-card' onclick="window.location='?eventID=${id}'">
+                  <h3>${e.title}</h3>
+                  <p><strong>Date :</strong> ${e.date || '—'}</p>
+                  <p><strong>Lieu :</strong> ${e.location || '—'}</p>
+                  <p><strong>Places :</strong> ${e.places || '—'}</p>
+                </div>
+              `).join('')}
             </section>`;
           return;
         }
@@ -187,19 +177,20 @@
           return;
         }
 
-        document.title = e.title + ' — TOUT DROIT';
+        document.title = `${e.title} — TOUT DROIT`;
         content.innerHTML = `
           <section class='event-detail'>
             <h2>${e.title}</h2>
             <div class='meta'>
               <p><strong>Date :</strong> ${e.date || '—'}</p>
               <p><strong>Lieu :</strong> ${e.location || '—'}</p>
-              <p><strong>Détails :</strong> ${e.details || '—'}</p>
+              <p><strong>Places :</strong> ${e.places || '—'}</p>
+              <p><strong>Type :</strong> ${e.type || '—'}</p>
             </div>
             <p>${e.description || ''}</p>
-            ${e.tally ? `<iframe src='${e.tally}' title='Formulaire d'inscription'></iframe>` : ''}
-          </section>`;
-      
+            ${e.tally ? `<iframe src='${e.tally}' title='Inscription'></iframe>` : ''}
+          </section>
+        `;
       } catch (err) {
         console.error(err);
         content.innerHTML = `<p class='error'>Erreur lors du chargement des événements.</p>`;
