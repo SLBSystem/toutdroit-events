@@ -4,23 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Événements TOUT DROIT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --blue: #0074c7;
       --green: #00b6a3;
-      --gray: #f5f7fa;
-      --text: #1c1c1c;
+      --light: #f9fafc;
+      --text: #1a1a1a;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--gray);
+      font-family: 'Montserrat', sans-serif;
+      background: var(--light);
       color: var(--text);
       display: flex;
       flex-direction: column;
@@ -34,25 +36,38 @@
     }
 
     header img {
-      width: 150px;
+      width: 160px;
       height: auto;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
     }
 
     h1 {
-      font-size: 1.8rem;
+      font-family: 'Raleway', sans-serif;
+      font-size: 2.3rem;
       background: linear-gradient(90deg, var(--blue), var(--green));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-weight: 800;
-      margin-bottom: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.8px;
+    }
+
+    .intro {
+      max-width: 750px;
+      text-align: center;
+      color: #333;
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+      padding: 0 1.2rem;
+      line-height: 1.8;
+      font-weight: 400;
     }
 
     .event-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1.5rem;
-      max-width: 1100px;
+      max-width: 1000px;
       width: 100%;
       padding: 1.5rem;
     }
@@ -60,50 +75,101 @@
     .event-card {
       background: #fff;
       border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      transition: 0.2s ease;
+      padding: 1.5rem 1.2rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
       cursor: pointer;
       border-top: 4px solid var(--blue);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: 'Montserrat', sans-serif;
     }
 
     .event-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
     }
 
     .event-card h3 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.3rem;
       color: var(--blue);
       margin-bottom: 0.4rem;
-      font-size: 1.2rem;
+      font-weight: 600;
     }
 
     .event-card p {
       font-size: 0.95rem;
-      color: #4b5563;
-      margin-bottom: 0.2rem;
+      color: #555;
+      margin-bottom: 0.3rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      color: white;
+      padding: 0.25rem 0.6rem;
+      border-radius: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .event-desc {
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .cta {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      color: white;
+      text-decoration: none;
+      padding: 0.6rem 1rem;
+      border-radius: 0.6rem;
+      margin-top: 1rem;
+      transition: all 0.3s;
+      font-weight: 600;
+      font-size: 0.9rem;
+      align-self: flex-start;
+      box-shadow: 0 4px 10px rgba(0, 118, 170, 0.25);
+      letter-spacing: 0.3px;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 118, 170, 0.35);
     }
 
     .event-detail {
       background: #fff;
       border-radius: 1rem;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      box-shadow: var(--shadow);
       max-width: 800px;
       width: 90%;
       margin: 2rem auto;
       padding: 2rem;
       animation: fadeIn 0.3s ease;
+      font-family: 'Montserrat', sans-serif;
     }
 
     .event-detail h2 {
-      font-size: 1.6rem;
+      font-family: 'Raleway', sans-serif;
       color: var(--blue);
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
     }
 
-    .event-detail .meta {
-      margin-bottom: 1.5rem;
+    .meta {
       color: #555;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
     }
 
     iframe {
@@ -114,19 +180,14 @@
       margin-top: 1.2rem;
     }
 
-    .error {
-      color: #e63946;
-      text-align: center;
-      font-weight: 500;
-      margin: 2rem;
-    }
-
     footer {
       margin-top: auto;
       padding: 2rem 1rem;
       text-align: center;
       color: #6b7280;
       font-size: 0.9rem;
+      letter-spacing: 0.3px;
+      font-family: 'Montserrat', sans-serif;
     }
 
     @keyframes fadeIn {
@@ -135,11 +196,11 @@
     }
   </style>
 </head>
-
 <body>
   <header>
     <img src="https://raw.githubusercontent.com/SLBSystem/toutdroit-events/main/logo-toutdroit.png" alt="Logo Tout Droit">
     <h1>Événements TOUT DROIT</h1>
+    <p class="intro">Des moments pour réseauter, apprendre, partager et faire grandir votre projet. 🌍<br>Afterworks, petits déj’ pros, tables rondes, ateliers & soirées networking — chaque rencontre est une opportunité de connexion et d’inspiration.</p>
   </header>
 
   <main id="content"></main>
@@ -161,10 +222,13 @@
             <section class='event-list'>
               ${Object.entries(data).map(([id, e]) => `
                 <div class='event-card' onclick="window.location='?eventID=${id}'">
+                  <span class='tag'>${e.type || 'Réseautage'}</span>
                   <h3>${e.title}</h3>
-                  <p><strong>Date :</strong> ${e.date || '—'}</p>
-                  <p><strong>Lieu :</strong> ${e.location || '—'}</p>
-                  <p><strong>Places :</strong> ${e.places || '—'}</p>
+                  <p><strong>📅</strong> ${e.date || 'À venir'}</p>
+                  <p><strong>📍</strong> ${e.location || 'Lieu à définir'}</p>
+                  <p><strong>👥</strong> ${e.places || 'Inscriptions ouvertes'}</p>
+                  <p class='event-desc'>${e.description?.substring(0, 100) || 'Une rencontre conviviale entre entrepreneurs et porteurs de projets.'}...</p>
+                  <a class='cta' href='?eventID=${id}'>Je participe →</a>
                 </div>
               `).join('')}
             </section>`;
@@ -189,8 +253,7 @@
             </div>
             <p>${e.description || ''}</p>
             ${e.tally ? `<iframe src='${e.tally}' title='Inscription'></iframe>` : ''}
-          </section>
-        `;
+          </section>`;
       } catch (err) {
         console.error(err);
         content.innerHTML = `<p class='error'>Erreur lors du chargement des événements.</p>`;
