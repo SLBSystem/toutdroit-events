@@ -15,157 +15,116 @@
   <style>
     :root {
       --blue: #0038ff;
-      --bg: #fafbff;
+      --bg-top: #f8faff;
+      --bg-bottom: #f3f6ff;
       --text: #111;
       --muted: #555;
       --border: #e6e9ff;
-      --radius: 16px;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      --radius: 20px;
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.06);
+      --shadow-strong: 0 10px 35px rgba(0,56,255,0.08), 0 4px 10px rgba(0,0,0,0.05);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: "Inter", system-ui, sans-serif;
-      background: var(--bg);
+      background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
       color: var(--text);
       line-height: 1.6;
     }
+    a { color: inherit; }
 
-    header {
-      text-align: center;
-      padding: 40px 20px 10px;
-    }
+    .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+
+    header { text-align: center; padding: 40px 20px 10px; }
     header img {
-      width: 100px;
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0, 56, 255, 0.18);
+      width: 300px; border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 56, 255, 0.18), 0 2px 4px rgba(0,0,0,0.08);
       margin-bottom: 10px;
     }
-    header h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--blue);
-      margin-bottom: 4px;
-    }
-    header p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+    header h1 { font-size: 2rem; font-weight: 800; color: var(--blue); letter-spacing: .3px; }
+    header p { color: var(--muted); font-size: 0.95rem; }
 
-    main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+    main { max-width: 900px; margin: 40px auto; padding: 0 20px; }
 
     .event-card {
       background: #fff;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(0,56,255,0.08);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-strong);
       padding: 30px 24px;
       margin-bottom: 40px;
       animation: fadeIn 0.3s ease;
     }
     .event-card h2 {
-      font-size: 1.6rem;
-      color: var(--blue);
-      margin-bottom: 8px;
+      font-size: 1.7rem; font-weight: 800; color: var(--blue);
+      margin-bottom: 8px; letter-spacing: .3px;
+      text-shadow: 0 1px 3px rgba(0,56,255,0.15);
     }
-    .event-meta {
-      font-size: 0.95rem;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-    .event-desc {
-      margin-bottom: 20px;
-    }
+    .event-meta { font-size: 0.95rem; color: var(--muted); margin-bottom: 16px; }
+    .event-desc { margin-bottom: 20px; color: #222; }
+
     .cta {
       display: inline-block;
-      background: var(--blue);
+      background: linear-gradient(90deg, var(--blue), #5a7bff);
       color: #fff;
       text-decoration: none;
       padding: 10px 16px;
       border-radius: 999px;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.95rem;
-      box-shadow: 0 6px 15px rgba(0, 56, 255, 0.25);
+      box-shadow: 0 6px 20px rgba(0,56,255,0.35);
+      transition: transform .15s ease, box-shadow .15s ease;
     }
-    .cta:hover {
-      box-shadow: 0 6px 18px rgba(0, 56, 255, 0.35);
-      transform: translateY(-1px);
-    }
+    .cta:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 25px rgba(0,56,255,0.45); }
 
     .no-event {
       text-align: center;
       background: #fff;
       border: 1px dashed var(--border);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-soft);
       padding: 40px 20px;
     }
-    .no-event h3 {
-      color: var(--blue);
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-    }
-    .no-event p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 14px;
-    }
+    .no-event h3 { color: var(--blue); font-size: 1.35rem; margin-bottom: 10px; }
+    .no-event p { color: var(--muted); font-size: 0.95rem; margin-bottom: 16px; }
 
     .follow {
       text-align: center;
-      margin-top: 60px;
-      padding: 30px 20px;
+      margin-top: 80px;
+      padding: 40px 20px;
+      background: rgba(0,56,255,0.03);
+      border-radius: 18px;
     }
-    .follow h3 {
-      font-size: 1.3rem;
-      color: var(--text);
-      margin-bottom: 10px;
-    }
-    .socials a {
-      display: inline-block;
-      margin: 0 8px;
-      text-decoration: none;
-      color: var(--blue);
-      font-weight: 600;
-    }
+    .follow h3 { font-size: 1.3rem; color: #000; margin-bottom: 10px; }
+    .follow h3 span { background: var(--blue); color: #fff; padding: 3px 8px; border-radius: 6px; }
+    .socials a { display: inline-block; margin: 0 8px; text-decoration: none; color: var(--blue); font-weight: 700; }
 
-    footer {
-      text-align: center;
-      color: #777;
-      font-size: 0.85rem;
-      margin: 60px 0 20px;
-    }
+    footer { text-align: center; color: #777; font-size: 0.85rem; margin: 60px 0 20px; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
-
 <body>
-  <header>
-    <img src="https://raw.githubusercontent.com/SLBSystem/toutdroit-events/main/logo-toutdroit.png" alt="TOUT DROIT">
-    <h1>TOUT DROIT</h1>
-    <p>Le réseau des entrepreneurs qui avancent — sans détour.</p>
-  </header>
+  <div class="container">
+    <header>
+      <img src="https://raw.githubusercontent.com/SLBSystem/toutdroit-events/main/logo-toutdroit.png" alt="TOUT DROIT">
+      <p>Le réseau des entrepreneurs qui avancent — sans détour.</p>
+    </header>
 
-  <main id="content"></main>
+    <main id="content"></main>
 
-  <section class="follow">
-    <h3>Découvre TOUT DROIT</h3>
-    <p>Rencontres, projets, collaborations et opportunités au Havre.</p>
-    <div class="socials">
-      <a href="https://www.instagram.com/toutdroit.td" target="_blank">Instagram</a> ·
-      <a href="https://www.linkedin.com/company/toutdroit" target="_blank">LinkedIn</a> ·
-      <a href="https://www.tiktok.com/@toutdroit" target="_blank">TikTok</a>
-    </div>
-  </section>
+    <section class="follow">
+      <h3>Découvre TOUT DROIT</h3>
+      <p>Rencontres, projets, collaborations et opportunités au Havre.</p>
+      <div class="socials">
+        <a href="https://www.instagram.com/toutdroit.td" target="_blank" rel="noopener">Instagram</a> ·
+        <a href="https://www.linkedin.com/company/toutdroit" target="_blank" rel="noopener">LinkedIn</a> ·
+        <a href="https://www.tiktok.com/@toutdroit" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    </section>
 
-  <footer>© 2025 TOUT DROIT — Le Havre</footer>
+    <footer>© 2025 TOUT DROIT — Le Havre</footer>
+  </div>
 
   <script>
     const content = document.getElementById("content");
@@ -187,7 +146,7 @@
     }
 
     async function loadEvent() {
-      content.innerHTML = "<p style='text-align:center;color:#777;'>Chargement...</p>";
+      content.innerHTML = "<p style='text-align:center;color:#777;'>Chargement…</p>";
       try {
         const res = await fetch("./events.json", { cache: "no-store" });
         if (!res.ok) throw new Error(res.statusText);
@@ -213,11 +172,7 @@
               ${next.places ? "👥 " + next.places : ""}
             </div>
             <div class="event-desc">${next.description || ""}</div>
-            ${
-              next.tally
-                ? `<a href="${next.tally}" class="cta" target="_blank">Je m'inscris</a>`
-                : ""
-            }
+            ${ next.tally ? `<a href="${next.tally}" class="cta" target="_blank" rel="noopener">Je m'inscris</a>` : "" }
           </div>
         `;
       } catch (err) {
@@ -225,7 +180,7 @@
           <div class="no-event">
             <h3>Aucun événement en cours</h3>
             <p>On prépare le prochain. Abonne-toi pour ne rien rater.</p>
-            <a href="https://www.instagram.com/toutdroit.td" class="cta" target="_blank">Suivre TOUT DROIT</a>
+            <a href="https://www.instagram.com/toutdroit.td" class="cta" target="_blank" rel="noopener">Suivre TOUT DROIT</a>
           </div>
         `;
       }
