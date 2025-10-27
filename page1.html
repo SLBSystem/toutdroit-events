@@ -1,192 +1,52 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TOUT DROIT — Le Réseau des Entrepreneurs</title>
-
-  <meta name="description" content="TOUT DROIT, le réseau des entrepreneurs qui avancent — sans détour. Découvre nos rencontres, projets et initiatives au Havre." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TOUT DROIT — Le réseau qui propulse ton projet</title>
+  <meta name="description" content="Événements, rencontres et entraide entre entrepreneurs au Havre. Brunchs, talks, afterworks. Rejoins le mouvement." />
   <link rel="icon" href="https://raw.githubusercontent.com/SLBSystem/toutdroit-events/main/favicon.png" />
-
-  <style>
-    :root {
-      --blue: #0038ff;
-      --bg-top: #f8faff;
-      --bg-bottom: #f3f6ff;
-      --text: #111;
-      --muted: #555;
-      --border: #e6e9ff;
-      --radius: 20px;
-      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.06);
-      --shadow-strong: 0 10px 35px rgba(0,56,255,0.08), 0 4px 10px rgba(0,0,0,0.05);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: "Inter", system-ui, sans-serif;
-      background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    a { color: inherit; }
-
-    .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
-
-    header { text-align: center; padding: 40px 20px 10px; }
-    header img {
-      width: 300px; border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0, 56, 255, 0.18), 0 2px 4px rgba(0,0,0,0.08);
-      margin-bottom: 10px;
-    }
-    header h1 { font-size: 2rem; font-weight: 800; color: var(--blue); letter-spacing: .3px; }
-    header p { color: var(--muted); font-size: 0.95rem; }
-
-    main { max-width: 900px; margin: 40px auto; padding: 0 20px; }
-
-    .event-card {
-      background: #fff;
-      border: 1px solid rgba(0,56,255,0.08);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-strong);
-      padding: 30px 24px;
-      margin-bottom: 40px;
-      animation: fadeIn 0.3s ease;
-    }
-    .event-card h2 {
-      font-size: 1.7rem; font-weight: 800; color: var(--blue);
-      margin-bottom: 8px; letter-spacing: .3px;
-      text-shadow: 0 1px 3px rgba(0,56,255,0.15);
-    }
-    .event-meta { font-size: 0.95rem; color: var(--muted); margin-bottom: 16px; }
-    .event-desc { margin-bottom: 20px; color: #222; }
-
-    .cta {
-      display: inline-block;
-      background: linear-gradient(90deg, var(--blue), #5a7bff);
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      box-shadow: 0 6px 20px rgba(0,56,255,0.35);
-      transition: transform .15s ease, box-shadow .15s ease;
-    }
-    .cta:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 25px rgba(0,56,255,0.45); }
-
-    .no-event {
-      text-align: center;
-      background: #fff;
-      border: 1px dashed var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-soft);
-      padding: 40px 20px;
-    }
-    .no-event h3 { color: var(--blue); font-size: 1.35rem; margin-bottom: 10px; }
-    .no-event p { color: var(--muted); font-size: 0.95rem; margin-bottom: 16px; }
-
-    .follow {
-      text-align: center;
-      margin-top: 80px;
-      padding: 40px 20px;
-      background: rgba(0,56,255,0.03);
-      border-radius: 18px;
-    }
-    .follow h3 { font-size: 1.3rem; color: #000; margin-bottom: 10px; }
-    .follow h3 span { background: var(--blue); color: #fff; padding: 3px 8px; border-radius: 6px; }
-    .socials a { display: inline-block; margin: 0 8px; text-decoration: none; color: var(--blue); font-weight: 700; }
-
-    footer { text-align: center; color: #777; font-size: 0.85rem; margin: 60px 0 20px; }
-
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <div class="container">
-    <header>
-      <img src="https://raw.githubusercontent.com/SLBSystem/toutdroit-events/main/logo-toutdroit.png" alt="TOUT DROIT">
-      <p>Le réseau des entrepreneurs qui avancent — sans détour.</p>
-    </header>
+  <header class="hero">
+    <img class="logo" src="https://raw.githubusercontent.com/SLBSystem/toutdroit-events/main/logo-toutdroit.png" alt="TOUT DROIT" />
+    <h1>Le réseau qui propulse <span>ton projet</span></h1>
+    <p class="subtitle">Viens networker, apprendre et avancer. Ambiance simple, utile, sans chichi.</p>
+    <div class="actions">
+      <a href="#evenements" class="btn primary">Voir les événements</a>
+      <a href="#apropos" class="btn outline">En savoir plus</a>
+    </div>
+  </header>
 
-    <main id="content"></main>
-
-    <section class="follow">
-      <h3>Découvre TOUT DROIT</h3>
-      <p>Rencontres, projets, collaborations et opportunités au Havre.</p>
-      <div class="socials">
-        <a href="https://www.instagram.com/toutdroit.td" target="_blank" rel="noopener">Instagram</a> ·
-        <a href="https://www.linkedin.com/company/toutdroit" target="_blank" rel="noopener">LinkedIn</a> ·
-        <a href="https://www.tiktok.com/@toutdroit" target="_blank" rel="noopener">TikTok</a>
-      </div>
+  <main class="container">
+    <!-- Prochain événement -->
+    <section id="next" aria-label="Prochain événement">
+      <h2 class="section-title">Prochain <span>événement</span></h2>
+      <div id="next-wrap" class="slot"></div>
     </section>
 
-    <footer>© 2025 TOUT DROIT — Le Havre</footer>
-  </div>
+    <!-- Liste (optionnelle) -->
+    <section id="evenements" aria-label="Tous les événements">
+      <h2 class="section-title">Les <span>prochains événements</span></h2>
+      <p class="section-sub">Brunchs, talks, afterworks. Choisis ton format.</p>
+      <div id="list-wrap" class="events-grid slot"></div>
+    </section>
 
-  <script>
-    const content = document.getElementById("content");
+    <!-- À propos -->
+    <section id="apropos" class="about">
+      <h3>Un réseau à ton image</h3>
+      <p>On connecte des porteurs de projets, freelances et entrepreneurs. On échange des idées concrètes, on partage nos galères et nos wins, et surtout on passe à l’action.</p>
+    </section>
+  </main>
 
-    function fmtDate(iso) {
-      if (!iso) return "Date à venir";
-      try {
-        const d = new Date(iso);
-        return d.toLocaleString("fr-FR", {
-          weekday: "long",
-          day: "2-digit",
-          month: "long",
-          hour: "2-digit",
-          minute: "2-digit"
-        });
-      } catch {
-        return iso;
-      }
-    }
+  <footer class="footer">
+    © 2025 TOUT DROIT — Le Havre ·
+    <a href="https://www.instagram.com/toutdroit.td" target="_blank" rel="noreferrer">Instagram</a>
+  </footer>
 
-    async function loadEvent() {
-      content.innerHTML = "<p style='text-align:center;color:#777;'>Chargement…</p>";
-      try {
-        const res = await fetch("./events.json", { cache: "no-store" });
-        if (!res.ok) throw new Error(res.statusText);
-        const data = await res.json();
-        const events = Array.isArray(data) ? data : Object.values(data);
-        if (!events.length) throw new Error("no_event");
-
-        const now = new Date();
-        const upcoming = events
-          .map(e => ({ ...e, date: new Date(e.start || e.date) }))
-          .filter(e => e.date >= now)
-          .sort((a, b) => a.date - b.date);
-
-        const next = upcoming[0];
-        if (!next) throw new Error("no_event");
-
-        content.innerHTML = `
-          <div class="event-card">
-            <h2>${next.title}</h2>
-            <div class="event-meta">
-              📅 ${fmtDate(next.start || next.date)}<br>
-              📍 ${next.location || "Lieu à définir"}<br>
-              ${next.places ? "👥 " + next.places : ""}
-            </div>
-            <div class="event-desc">${next.description || ""}</div>
-            ${ next.tally ? `<a href="${next.tally}" class="cta" target="_blank" rel="noopener">Je m'inscris</a>` : "" }
-          </div>
-        `;
-      } catch (err) {
-        content.innerHTML = `
-          <div class="no-event">
-            <h3>Aucun événement en cours</h3>
-            <p>On prépare le prochain. Abonne-toi pour ne rien rater.</p>
-            <a href="https://www.instagram.com/toutdroit.td" class="cta" target="_blank" rel="noopener">Suivre TOUT DROIT</a>
-          </div>
-        `;
-      }
-    }
-
-    loadEvent();
-  </script>
+  <script src="./app.js" defer></script>
 </body>
 </html>
