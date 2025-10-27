@@ -2,210 +2,385 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TOUT DROIT — Événements</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TOUT DROIT — Le réseau des entrepreneurs</title>
 
-  <!-- SEO basique -->
-  <meta name="description" content="Événements TOUT DROIT au Havre : afterworks, brunchs, ateliers et networking pour entrepreneurs. Rejoignez-nous." />
-
-  <!-- Perf Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Favicon -->
+  <meta name="description" content="TOUT DROIT : événements entrepreneurs au Havre. Brunchs, afterworks, ateliers et networking. Rejoins une communauté qui avance — sans détour."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="icon" href="https://raw.githubusercontent.com/SLBSystem/toutdroit-events/main/favicon.png" />
 
   <style>
     :root{
-      --blue:#0074c7;      /* si tu veux coller à ton mail: remplace par #0038FF */
-      --green:#00b6a3;
-      --light:#f9fafc;
-      --text:#1a1a1a;
+      --blue:#0038FF;
+      --ink:#111;
+      --muted:#666;
+      --bg:#f7f8fc;
+      --card:#fff;
+      --border:#eef0f5;
       --shadow:0 6px 20px rgba(0,0,0,.08);
+      --radius:16px;
     }
-
-    *{margin:0;padding:0;box-sizing:border-box}
-
+    *{box-sizing:border-box;margin:0;padding:0}
     body{
-      font-family:'Montserrat',sans-serif;
-      background:var(--light);
-      color:var(--text);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      min-height:100vh;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--ink); background:var(--bg); line-height:1.6;
     }
 
-    header{
-      text-align:center;
-      padding:2rem 1rem 1rem;
+    /* Header / Hero */
+    .hero{
+      background:#fff; border-bottom:1px solid var(--border);
     }
+    .hero__inner{
+      max-width:1100px; margin:0 auto; padding:32px 20px 24px; text-align:center;
+    }
+    .logo{
+      width:96px; height:auto; border-radius:12px;
+      box-shadow:0 10px 24px rgba(0,56,255,.18), 0 2px 6px rgba(0,0,0,.08);
+      margin:8px auto 16px; display:block;
+    }
+    .title{
+      font-size:clamp(24px, 3vw, 36px); font-weight:700; letter-spacing:.2px;
+      color:var(--ink); margin-bottom:6px;
+    }
+    .subtitle{
+      color:#2a2a2a; font-size:clamp(14px, 2vw, 16px);
+    }
+    .subtitle strong{ color:var(--blue); }
 
-    header img{
-      width:160px;height:auto;margin-bottom:.8rem;
-      border-radius:10px;
-      box-shadow:0 6px 15px rgba(0, 116, 199, .20), 0 2px 4px rgba(0,0,0,.08);
+    /* Sections */
+    .section{
+      max-width:1100px; margin:28px auto; padding:0 20px;
     }
+    .section__head{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      margin-bottom:14px;
+    }
+    .section__title{
+      font-weight:700; font-size:clamp(18px, 2.2vw, 22px); color:var(--ink);
+    }
+    .section__hint{ color:var(--muted); font-size:14px; }
 
-    h1{
-      font-family:'Raleway',sans-serif;
-      font-size:2.3rem;
-      background:linear-gradient(90deg,var(--blue),var(--green));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      font-weight:700;
-      margin-bottom:.6rem;
-      letter-spacing:.8px;
+    /* Grids / Cards */
+    .grid{
+      display:grid; gap:16px;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
     }
-
-    .intro{
-      max-width:750px;text-align:center;color:#333;
-      font-size:1.1rem;margin-bottom:2.5rem;padding:0 1.2rem;
-      line-height:1.8;font-weight:400;
+    .card{
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+      box-shadow:var(--shadow); padding:18px 16px; display:flex; flex-direction:column; gap:10px;
+      transition:.25s transform, .25s box-shadow;
     }
-
-    .event-list{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:1.5rem;max-width:1000px;width:100%;padding:1.5rem;
+    .card:hover{ transform:translateY(-4px); box-shadow:0 14px 28px rgba(0,0,0,.12); }
+    .badge{
+      display:inline-block; font-size:12px; font-weight:600; letter-spacing:.4px;
+      padding:6px 10px; border-radius:999px; background:#eef2ff; color:var(--blue);
+      width:max-content;
     }
-
-    /* a.event-card pour accessibilité clavier + sémantique */
-    a.event-card{
-      background:#fff;border-radius:1rem;padding:1.5rem 1.2rem;
-      box-shadow:var(--shadow);transition:all .3s ease;cursor:pointer;
-      border-top:4px solid var(--blue);text-decoration:none;color:inherit;
-      display:flex;flex-direction:column;justify-content:space-between;
-      font-family:'Montserrat',sans-serif;
+    .card h3{
+      font-size:18px; color:var(--blue); font-weight:700; line-height:1.35;
     }
-    a.event-card:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,.12)}
-    a.event-card:focus{outline:none;box-shadow:0 0 0 3px rgba(0,116,199,.35), var(--shadow)}
-    a.event-card h3{
-      font-family:'Raleway',sans-serif;font-size:1.3rem;color:var(--blue);
-      margin-bottom:.4rem;font-weight:600;
-    }
-    a.event-card p{font-size:.95rem;color:#555;margin-bottom:.3rem}
-
-    .tag{
-      display:inline-block;background:linear-gradient(90deg,var(--blue),var(--green));
-      color:#fff;padding:.25rem .6rem;border-radius:.4rem;font-size:.75rem;
-      font-weight:600;margin-bottom:.6rem;text-transform:uppercase;letter-spacing:.5px;
-    }
-
-    .event-desc{margin-top:.4rem;font-size:.9rem;color:#666;line-height:1.5}
+    .meta{ color:#444; font-size:14px; }
+    .meta b{ color:#222; }
+    .desc{ color:#555; font-size:14px; }
 
     .cta{
-      display:inline-block;background:linear-gradient(90deg,var(--blue),var(--green));
-      color:#fff;text-decoration:none;padding:.6rem 1rem;border-radius:.6rem;
-      margin-top:1rem;transition:all .3s;font-weight:600;font-size:.9rem;
-      align-self:flex-start;box-shadow:0 4px 10px rgba(0,118,170,.25);letter-spacing:.3px;
+      display:inline-block; width:max-content;
+      background:var(--blue); color:#fff; text-decoration:none;
+      font-weight:600; font-size:14px; padding:10px 14px; border-radius:999px;
+      box-shadow:0 6px 16px rgba(0,56,255,.25); transition:.2s transform, .2s box-shadow;
     }
-    .cta:hover{transform:translateY(-2px);box-shadow:0 6px 15px rgba(0,118,170,.35)}
+    .cta:hover{ transform:translateY(-2px); box-shadow:0 10px 20px rgba(0,56,255,.28); }
 
-    .event-detail{
-      background:#fff;border-radius:1rem;box-shadow:var(--shadow);
-      max-width:800px;width:90%;margin:2rem auto;padding:2rem;
-      animation:fadeIn .3s ease;font-family:'Montserrat',sans-serif;
+    .ghost{
+      display:inline-block; width:max-content;
+      background:#f1f3ff; color:var(--blue); text-decoration:none;
+      font-weight:600; font-size:14px; padding:10px 14px; border-radius:999px;
     }
-    .event-detail h2{
-      font-family:'Raleway',sans-serif;color:var(--blue);margin-bottom:1rem;font-weight:600;
-    }
-    .meta{color:#555;margin-bottom:1.5rem;font-size:.95rem}
-    .meta p{margin:.2rem 0}
 
+    /* Detail */
+    .detail{
+      background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+      box-shadow:var(--shadow); padding:22px; margin-top:10px;
+    }
     iframe{
-      width:100%;
-      height:clamp(420px, 70vh, 720px);
-      border:none;border-radius:.8rem;margin-top:1.2rem;
+      width:100%; height:clamp(420px, 70vh, 740px);
+      border:none; border-radius:12px; margin-top:14px;
     }
 
-    .error{
-      max-width:800px;margin:2rem auto;padding:1rem 1.2rem;background:#fff2f2;
-      color:#991b1b;border:1px solid #fecaca;border-radius:.6rem;text-align:center;font-weight:600;
+    /* Empty / Error */
+    .empty, .error{
+      background:var(--card); border:1px dashed var(--border); border-radius:var(--radius);
+      padding:26px; text-align:center; color:#333;
     }
+    .empty p, .error p{ margin:8px 0 }
+    .error{ border-style:solid; border-color:#ffd1d1; background:#fff6f6; color:#8b1a1a }
 
+    /* Footer */
     footer{
-      margin-top:auto;padding:2rem 1rem;text-align:center;color:#6b7280;
-      font-size:.9rem;letter-spacing:.3px;font-family:'Montserrat',sans-serif;
+      margin:40px auto 24px; text-align:center; color:#777; font-size:13px;
     }
+    .social{
+      margin-top:8px; display:flex; gap:10px; justify-content:center;
+    }
+    .social a img{
+      width:18px; height:18px; vertical-align:middle;
+      filter:invert(52%) sepia(0%) saturate(0%) hue-rotate(150deg) brightness(92%) contrast(90%);
+      opacity:.75; transition:.2s opacity, .2s transform;
+    }
+    .social a:hover img{ opacity:.95; transform:translateY(-1px) }
 
-    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    /* Utilities */
+    .muted{ color:#777 }
+    .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center }
+    .right{ margin-left:auto }
+
+    @media (max-width:640px){
+      .row.stack{ flex-direction:column; align-items:flex-start }
+      .right{ margin-left:0 }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://raw.githubusercontent.com/SLBSystem/toutdroit-events/main/logo-toutdroit.png" alt="Logo TOUT DROIT" />
-    <h1>Événements TOUT DROIT</h1>
-    <p class="intro">
-      Des moments pour réseauter, apprendre, partager et faire grandir votre projet. 🌍<br />
-      Afterworks, petits déj’ pros, tables rondes, ateliers & soirées networking — chaque rencontre est une opportunité de connexion et d’inspiration.
-    </p>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero__inner">
+      <img class="logo" src="https://raw.githubusercontent.com/SLBSystem/toutdroit-events/main/logo-toutdroit.png" alt="TOUT DROIT">
+      <h1 class="title">TOUT DROIT</h1>
+      <p class="subtitle">Le réseau des entrepreneurs qui avancent — <strong>sans détour</strong>.</p>
+    </div>
   </header>
 
-  <main id="content"></main>
+  <!-- EN COURS -->
+  <section class="section" id="liveSection" hidden>
+    <div class="section__head row stack">
+      <h2 class="section__title">En ce moment</h2>
+      <span class="section__hint right">Événement en cours</span>
+    </div>
+    <div id="liveContainer" class="grid"></div>
+  </section>
 
-  <footer>© 2025 TOUT DROIT — Ensemble, on avance dans la même direction.</footer>
+  <!-- PROCHAINS ÉVÉNEMENTS -->
+  <section class="section">
+    <div class="section__head row stack">
+      <h2 class="section__title">Prochains événements</h2>
+      <span class="section__hint right" id="countUpcoming"></span>
+    </div>
+    <div id="upcomingContainer" class="grid"></div>
+    <div id="emptyUpcoming" class="empty" hidden>
+      <h3>Aucun événement ouvert pour le moment</h3>
+      <p class="muted">On te prépare des choses bien. En attendant, reste branché.</p>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <a class="cta" href="https://www.instagram.com/toutdroit.td" target="_blank" rel="noopener">Suivre sur Instagram</a>
+        <a class="ghost" href="#newsletter">Être prévenu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DÉTAIL (quand eventID présent) -->
+  <section class="section" id="detailSection" hidden>
+    <div class="section__head">
+      <h2 class="section__title" id="detailTitle">Détail</h2>
+    </div>
+    <div class="detail" id="detailCard"></div>
+  </section>
+
+  <!-- NEWSLETTER / TALLY -->
+  <section class="section" id="newsletter">
+    <div class="section__head row stack">
+      <h2 class="section__title">Rester informé</h2>
+      <span class="section__hint right">Zéro spam. Juste l’essentiel.</span>
+    </div>
+    <div class="card">
+      <!-- Remplace l’URL Tally par ta liste d’attente/newsletter -->
+      <iframe src="https://tally.so/r/3jVL7a" title="S’inscrire pour être prévenu" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- ERREUR GLOBALE -->
+  <section class="section" id="errorSection" hidden>
+    <div class="error">
+      <h3>Oups</h3>
+      <p>Erreur lors du chargement des événements.</p>
+      <p class="muted">Réessaie plus tard ou contacte l’équipe.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 TOUT DROIT — Le Havre</p>
+    <div class="social">
+      <a href="https://www.instagram.com/toutdroit.td" target="_blank" rel="noopener">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
+      </a>
+      <a href="https://www.linkedin.com/company/toutdroit" target="_blank" rel="noopener">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn">
+      </a>
+      <a href="https://www.tiktok.com/@toutdroit" target="_blank" rel="noopener">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok">
+      </a>
+    </div>
+  </footer>
 
   <script>
-    async function loadPage(){
-      const params = new URLSearchParams(window.location.search);
-      const eventID = params.get("eventID");
-      const content = document.getElementById("content");
+    const fmt = (d)=> new Intl.DateTimeFormat('fr-FR', { dateStyle:'full', timeStyle:'short' }).format(d);
 
-      content.innerHTML = "<p class='meta' style='text-align:center;'>Chargement…</p>";
+    // Essaie d'obtenir un Date à partir de l’objet event
+    function parseEventDate(e){
+      // Priorité: champ ISO "start" / "end" si présent. Sinon tentative sur "date"
+      const start = e.start ? new Date(e.start) : (e.date ? new Date(e.date) : null);
+      const end   = e.end   ? new Date(e.end)   : null;
+      return { start: isNaN(start) ? null : start, end: end && !isNaN(end) ? end : null };
+    }
+
+    function eventCard(id, e){
+      const { start, end } = parseEventDate(e);
+      const dateTxt = start ? fmt(start) : (e.date || 'À venir');
+      const locTxt = e.location || 'Lieu à définir';
+      const places = e.places || 'Inscriptions ouvertes';
+      const type   = e.type || 'Événement';
+      const desc   = (e.description || 'Une rencontre conviviale entre entrepreneurs.').slice(0, 140);
+
+      return `
+        <a class="card" href='?eventID=${encodeURIComponent(id)}' aria-label="Voir l'événement ${e.title || 'TOUT DROIT'}">
+          <span class="badge">${type}</span>
+          <h3>${e.title || 'Événement TOUT DROIT'}</h3>
+          <p class="meta"><b>📅</b> ${dateTxt}</p>
+          <p class="meta"><b>📍</b> ${locTxt}</p>
+          <p class="meta"><b>👥</b> ${places}</p>
+          <p class="desc">${desc}...</p>
+          <span class="cta" style="margin-top:6px;">Je participe →</span>
+        </a>
+      `;
+    }
+
+    function liveCard(id, e){
+      const { start, end } = parseEventDate(e);
+      const endTxt   = end ? fmt(end) : 'bientôt';
+      const locTxt   = e.location || 'Lieu à définir';
+      const type     = e.type || 'Événement';
+
+      return `
+        <div class="card">
+          <span class="badge">En cours</span>
+          <h3>${e.title || 'Événement TOUT DROIT'}</h3>
+          <p class="meta"><b>⏱️</b> Jusqu’à ${endTxt}</p>
+          <p class="meta"><b>📍</b> ${locTxt}</p>
+          <p class="desc">${(e.description || '').slice(0, 220)}...</p>
+          <div class="row" style="margin-top:6px;">
+            <a class="cta" href='?eventID=${encodeURIComponent(id)}'>Voir le détail</a>
+            <a class="ghost" href="https://www.instagram.com/toutdroit.td" target="_blank" rel="noopener">Stories en direct</a>
+          </div>
+        </div>
+      `;
+    }
+
+    function detailBlock(e){
+      const { start, end } = parseEventDate(e);
+      const dateTxt = start ? fmt(start) : (e.date || '—');
+      const locTxt  = e.location || '—';
+      const places  = e.places || '—';
+      const type    = e.type || '—';
+      const desc    = e.description || '';
+
+      return `
+        <h2 style="margin-bottom:4px">${e.title || 'Événement TOUT DROIT'}</h2>
+        <p class="muted" style="margin-bottom:12px">${type}</p>
+        <div class="row stack" style="margin-bottom:12px">
+          <span class="meta"><b>Date :</b> ${dateTxt}</span>
+          <span class="meta"><b>Lieu :</b> ${locTxt}</span>
+          <span class="meta"><b>Places :</b> ${places}</span>
+        </div>
+        <p style="margin-bottom:8px">${desc}</p>
+        ${e.tally ? `<iframe src="${e.tally}" title="Inscription" loading="lazy"></iframe>` : `
+          <div class="empty" style="margin-top:10px">
+            <h3>Les inscriptions ouvriront bientôt</h3>
+            <p class="muted">Suis-nous pour être prévenu dès l’ouverture.</p>
+            <a class="cta" href="https://www.instagram.com/toutdroit.td" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        `}
+      `;
+    }
+
+    async function load(){
+      const contentUpcoming = document.getElementById('upcomingContainer');
+      const emptyUpcoming   = document.getElementById('emptyUpcoming');
+      const countUpcoming   = document.getElementById('countUpcoming');
+      const liveSection     = document.getElementById('liveSection');
+      const liveContainer   = document.getElementById('liveContainer');
+      const detailSection   = document.getElementById('detailSection');
+      const detailCard      = document.getElementById('detailCard');
+      const errorSection    = document.getElementById('errorSection');
+
+      // loading states
+      contentUpcoming.innerHTML = `<div class="card"><p class="muted">Chargement des événements…</p></div>`;
+
+      const qs = new URLSearchParams(location.search);
+      const eventID = qs.get('eventID');
 
       try{
-        const res = await fetch('./events.json'); // chemin relatif pour éviter les 404 en sous-dossiers
-        if(!res.ok) throw new Error('HTTP ' + res.status);
+        const res = await fetch('./events.json');
+        if(!res.ok) throw new Error('HTTP '+res.status);
         const data = await res.json();
 
-        if(!eventID){
-          content.innerHTML = `
-            <section class='event-list'>
-              ${Object.entries(data).map(([id, e]) => `
-                <a class='event-card' href='?eventID=${encodeURIComponent(id)}' aria-label="Voir l'événement ${e.title || 'Événement'}">
-                  <span class='tag'>${e.type || 'Réseautage'}</span>
-                  <h3>${e.title || 'Événement TOUT DROIT'}</h3>
-                  <p><strong>📅</strong> ${e.date || 'À venir'}</p>
-                  <p><strong>📍</strong> ${e.location || 'Lieu à définir'}</p>
-                  <p><strong>👥</strong> ${e.places || 'Inscriptions ouvertes'}</p>
-                  <p class='event-desc'>${(e.description || 'Une rencontre conviviale entre entrepreneurs et porteurs de projets.').substring(0, 100)}...</p>
-                  <span class='cta'>Je participe →</span>
-                </a>
-              `).join('')}
-            </section>
-          `;
-          return;
+        const entries = Object.entries(data || {});
+        const now = new Date();
+
+        // compute statuses
+        const enriched = entries.map(([id, e])=>{
+          const { start, end } = parseEventDate(e);
+          const status =
+            start && end && now >= start && now <= end ? 'live' :
+            start && now < start ? 'upcoming' :
+            start && end && now > end ? 'past' :
+            'unknown';
+          return { id, e, start, end, status };
+        });
+
+        // Live
+        const live = enriched.filter(x=>x.status==='live');
+        if(live.length){
+          liveSection.hidden = false;
+          liveContainer.innerHTML = live.map(x=>liveCard(x.id, x.e)).join('');
         }
 
-        const e = data[eventID];
-        if(!e){
-          content.innerHTML = `<p class='error'>Événement introuvable 🚫</p>`;
-          return;
+        // Upcoming sorted
+        const upcoming = enriched
+          .filter(x=>x.status==='upcoming')
+          .sort((a,b)=>(a.start||0)-(b.start||0));
+
+        countUpcoming.textContent = upcoming.length ? `${upcoming.length} à venir` : '';
+        if(upcoming.length){
+          contentUpcoming.innerHTML = upcoming.map(x=>eventCard(x.id, x.e)).join('');
+          emptyUpcoming.hidden = true;
+        }else{
+          contentUpcoming.innerHTML = '';
+          emptyUpcoming.hidden = false;
         }
 
-        document.title = `${e.title || 'Événement'} — TOUT DROIT`;
-        content.innerHTML = `
-          <section class='event-detail'>
-            <h2>${e.title || 'Événement TOUT DROIT'}</h2>
-            <div class='meta'>
-              <p><strong>Date :</strong> ${e.date || '—'}</p>
-              <p><strong>Lieu :</strong> ${e.location || '—'}</p>
-              <p><strong>Places :</strong> ${e.places || '—'}</p>
-              <p><strong>Type :</strong> ${e.type || '—'}</p>
-            </div>
-            <p>${e.description || ''}</p>
-            ${e.tally ? `<iframe src='${e.tally}' title='Inscription' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>` : ''}
-          </section>
-        `;
+        // Detail page
+        if(eventID){
+          const found = enriched.find(x=>x.id === eventID);
+          detailSection.hidden = false;
+          if(found){
+            document.title = `${found.e.title || 'Événement'} — TOUT DROIT`;
+            detailCard.innerHTML = detailBlock(found.e);
+          }else{
+            detailCard.innerHTML = `<div class="error"><h3>Événement introuvable</h3><p>Le lien n’est plus valide ou l’événement n’existe pas.</p></div>`;
+          }
+        }
+
       }catch(err){
         console.error(err);
-        content.innerHTML = `<p class='error'>Erreur lors du chargement des événements.</p>`;
+        errorSection.hidden = false;
+        contentUpcoming.innerHTML = '';
+        emptyUpcoming.hidden = true;
       }
     }
 
-    loadPage();
+    load();
   </script>
 </body>
 </html>
