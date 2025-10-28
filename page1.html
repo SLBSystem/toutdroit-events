@@ -1,52 +1,84 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TOUT DROIT — Le réseau qui propulse ton projet</title>
-  <meta name="description" content="Événements, rencontres et entraide entre entrepreneurs au Havre. Brunchs, talks, afterworks. Rejoins le mouvement." />
-  <link rel="icon" href="https://raw.githubusercontent.com/SLBSystem/toutdroit-events/main/favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-  <header class="hero">
-    <img class="logo" src="https://raw.githubusercontent.com/SLBSystem/toutdroit-events/main/logo-toutdroit.png" alt="TOUT DROIT" />
-    <h1>Le réseau qui propulse <span>ton projet</span></h1>
-    <p class="subtitle">Viens networker, apprendre et avancer. Ambiance simple, utile, sans chichi.</p>
-    <div class="actions">
-      <a href="#evenements" class="btn primary">Voir les événements</a>
-      <a href="#apropos" class="btn outline">En savoir plus</a>
-    </div>
-  </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TOUT DROIT — Les prochains événements</title>
+    <meta
+      name="description"
+      content="Rejoins le réseau d'entrepreneurs TOUT DROIT : brunchs, afterworks, ateliers et rencontres au Havre et ailleurs."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
 
-  <main class="container">
-    <!-- Prochain événement -->
-    <section id="next" aria-label="Prochain événement">
-      <h2 class="section-title">Prochain <span>événement</span></h2>
-      <div id="next-wrap" class="slot"></div>
-    </section>
+  <body>
+    <header class="hero">
+      <img
+        src="https://raw.githubusercontent.com/SLBSystem/toutdroit-events/main/logo-toutdroit.png"
+        alt="Logo TOUT DROIT"
+        class="logo"
+      />
+      <h1>Le réseau qui propulse <span>ton projet</span></h1>
+      <p class="subtitle">
+        Rejoins des entrepreneurs de tous horizons pour échanger, apprendre et
+        faire grandir ton business.
+      </p>
+      <div class="actions">
+        <a href="#evenements" class="btn primary">Voir les événements</a>
+        <a href="#apropos" class="btn outline">En savoir plus</a>
+      </div>
+    </header>
 
-    <!-- Liste (optionnelle) -->
-    <section id="evenements" aria-label="Tous les événements">
-      <h2 class="section-title">Les <span>prochains événements</span></h2>
-      <p class="section-sub">Brunchs, talks, afterworks. Choisis ton format.</p>
-      <div id="list-wrap" class="events-grid slot"></div>
-    </section>
+    <main class="container">
+      <!-- Section événements -->
+      <section class="td-section" id="evenements">
+        <div class="td-container">
+          <div class="td-header">
+            <h2 class="td-title">
+              Les <span class="td-title-grad">prochains événements</span>
+            </h2>
+            <p class="td-sub">
+              Rejoins-nous pour networker, apprendre et développer ton projet.
+              Ambiance conviviale garantie !
+            </p>
+          </div>
 
-    <!-- À propos -->
-    <section id="apropos" class="about">
-      <h3>Un réseau à ton image</h3>
-      <p>On connecte des porteurs de projets, freelances et entrepreneurs. On échange des idées concrètes, on partage nos galères et nos wins, et surtout on passe à l’action.</p>
-    </section>
-  </main>
+          <div id="td-events-grid" class="td-grid"></div>
 
-  <footer class="footer">
-    © 2025 TOUT DROIT — Le Havre ·
-    <a href="https://www.instagram.com/toutdroit.td" target="_blank" rel="noreferrer">Instagram</a>
-  </footer>
+          <div class="td-center">
+            <button class="td-btn td-btn-outline td-btn-lg" id="td-view-all">
+              Voir tous les événements
+            </button>
+          </div>
+        </div>
+      </section>
 
-  <script src="./app.js" defer></script>
-</body>
+      <!-- Section À propos -->
+      <section id="apropos" class="about">
+        <h3>Un réseau à ton image</h3>
+        <p>
+          TOUT DROIT connecte des porteurs de projets, indépendants, créateurs
+          et entrepreneurs du Havre et d'ailleurs. On apprend ensemble, on
+          partage nos galères et nos réussites. Pas de costume-cravate, juste
+          des gens motivés à avancer.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      © 2025 TOUT DROIT — Le Havre ·
+      <a
+        href="https://www.instagram.com/toutdroit.td"
+        target="_blank"
+        rel="noreferrer"
+        >Instagram</a
+      >
+    </footer>
+
+    <script src="./events-ui.js" defer></script>
+  </body>
 </html>
